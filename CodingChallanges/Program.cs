@@ -61,48 +61,92 @@ Console.WriteLine("Hello, World!");
 //string result = LongestCommonPrefix(["flower", "flow", "flight"]);
 //Console.WriteLine($"{result}");
 
-int RemoveElement(int[] nums, int val)
+//int RemoveElement(int[] nums, int val)
+//{
+//    if (nums.Length < 0 || nums.Length > 100) return 0;
+//    if (val < 0 || val > 100) return 0;
+
+//    int count = 0;
+
+//    for (int i = 0; i < nums.Length; i++)
+//    {
+//        if (nums[i] != val)
+//        {
+//            continue;
+//        }
+//        else
+//        {
+//            count++;
+//        }
+//    }
+
+//    Console.WriteLine($"count - {count}");
+
+//    int[] newNums = new int[nums.Length - count];
+
+//    int index = 0;
+
+//    for (int i = 0; i < nums.Length; i++)
+//    {
+//        if (nums[i] != val)
+//        {
+//            newNums[index] = nums[i];
+//            index += 1;
+//        }
+//    }
+
+    //for (int i = 0; i < newNums.Length; i++)
+    //{
+    //    Console.WriteLine(newNums[i]);
+    //}
+
+//    nums = newNums;
+
+//    for (int i = 0; i < nums.Length; i++)
+//    {
+//        Console.WriteLine(nums[i]);
+//    }
+//    return count;
+//}
+
+//int result = RemoveElement([3, 2, 2, 3], 3);
+//Console.WriteLine(result);
+
+int RemoveDuplicates(int[] nums)
 {
-    if(nums.Length < 0 || nums.Length > 100) return 0;
-    if(val  < 0 || val > 100) return 0;
+    if (nums.Length < 1 || nums.Length > 3 * Math.Pow(10, 4)) return 0;
 
-    int count = 0;
-
-    for(int i = 0; i < nums.Length; i++)
+    int[] newNums = new int[nums.Length];
+    int index = 0;
+    int current = nums[1];
+    int count = 1;
+    for (int i = 1; i < nums.Length; i++)
     {
-        if (nums[i] != val)
+        if (-100 > nums[i] || nums[i] > 100)
+            return 0;
+        if (current != nums[i - 1])
         {
-            continue;
+            nums[index] = current;
+            current = nums[i];
+            index += 1;
+            count += 1;
         }
         else
         {
-            count++;
+            continue;
         }
     }
 
-    Console.WriteLine($"count - {count}");
-
-    int[] newNums = new int[nums.Length - count];
-
-    int index = 0;
-
-    for (int i = 0; i < nums.Length; i++)
+    for (int i = 1; i < nums.Length; i++)
     {
-        if (nums[i] != val)
-        {
-            newNums[index] = nums[i];
-            index += 1;
-        }
+        Console.WriteLine(nums[i]);
     }
 
-    for(int i = 0; i < newNums.Length; i++)
-    {
-        Console.WriteLine(newNums[i]);
-    }
-
-    nums = newNums;
     return count;
 }
 
-int result = RemoveElement([3, 2, 2, 3], 3);
+
+
+int result = RemoveDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]);
+Console.WriteLine();
 Console.WriteLine(result);
